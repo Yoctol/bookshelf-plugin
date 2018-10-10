@@ -1,5 +1,7 @@
 # bookshelf-plugin
 
+[![npm](https://img.shields.io/npm/v/@yoctol/bookshelf-plugin.svg)](https://www.npmjs.com/package/@yoctol/bookshelf-plugin)
+
 ## Install
 
 ```sh
