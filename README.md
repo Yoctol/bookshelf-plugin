@@ -25,6 +25,7 @@ bookshelf.plugin(plugin);
 - touch
 - soft-delete
 - accessible-attributes
+- save-refresh
 
 You can pass `caseConverter: false` option to disable `case-converter`:
 
@@ -93,6 +94,16 @@ const User = bookshelf.Model.extend({
 user.name; // Same as user.get('name');
 user.type; // Same as user.get('type');
 user.age; // Same as user.get('age');
+```
+
+### save-refresh
+
+> This feature may be supported after bookshelf v0.14.x: https://github.com/bookshelf/bookshelf/issues/1665
+
+```js
+user.save(null, { withRefresh: true });
+user.save({ key: value }, { withRefresh: true });
+user.save(key, value, { withRefresh: true });
 ```
 
 ## License
