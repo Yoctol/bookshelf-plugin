@@ -26,6 +26,14 @@ bookshelf.plugin(plugin);
 - soft-delete
 - accessible-attributes
 
+You can pass `caseConverter: false` option to disable `case-converter`:
+
+```js
+const plugin = require('@yoctol/bookshelf-plugin');
+
+bookshelf.plugin(plugin, { caseConverter: false });
+```
+
 ### touch
 
 ```js
