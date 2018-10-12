@@ -17,6 +17,7 @@ module.exports = bookshelf => {
                 ? this.get(snakeCase(attr))
                 : this.get(attr),
             set: (value, key) => this.set(key, value),
+            configurable: true,
           });
         });
       }
