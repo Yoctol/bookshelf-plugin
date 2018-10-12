@@ -64,17 +64,21 @@ module.exports = bookshelf => {
   // eslint-disable-next-line no-param-reassign
   bookshelf.Model = bookshelf.Model.extend({
     destroy(options = {}) {
-      if (options.transacting) {
-        return cascadeDelete.call(
-          this,
-          options.transacting,
-          omit(options, ['cascade'])
+      if (this.dependents && this.dependents.length > 0) {
+        if (options.transacting) {
+          return cascadeDelete.call(
+            this,
+            options.transacting,
+            omit(options, ['cascade'])
+          );
+        }
+
+        return bookshelf.knex.transaction(transacting =>
+          cascadeDelete.call(this, transacting, omit(options, ['cascade']))
         );
       }
 
-      return bookshelf.knex.transaction(transacting =>
-        cascadeDelete.call(this, transacting, omit(options, ['cascade']))
-      );
+      return proto.destroy.call(this, options);
     },
   });
 };

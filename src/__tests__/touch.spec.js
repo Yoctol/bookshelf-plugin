@@ -94,3 +94,43 @@ it('should update touches relations', async () => {
 
   await project.touch();
 });
+
+it('should update touches relations after destroyed event', async () => {
+  expect.assertions(6);
+
+  tracker.on('query', (query, step) => {
+    if (step === 1) {
+      expect(query.sql).toEqual('delete from `projects` where `id` = ?');
+      expect(query.bindings).toEqual(['1']);
+
+      query.response([1]);
+    }
+
+    if (step === 2) {
+      expect(query.sql).toEqual(
+        'select `users`.* from `users` where `users`.`id` in (?)'
+      );
+      expect(query.bindings).toEqual(['1']);
+
+      query.response([
+        {
+          id: '1',
+          name: 'John',
+          type: 'admin',
+          age: 18,
+        },
+      ]);
+    }
+
+    if (step === 3) {
+      expect(query.sql).toEqual(
+        'update `users` set `updated_at` = ? where `id` = ?'
+      );
+      expect(query.bindings).toEqual([expect.any(Date), '1']);
+
+      query.response([1]);
+    }
+  });
+
+  await Project.forge({ id: '1' }).destroy();
+});

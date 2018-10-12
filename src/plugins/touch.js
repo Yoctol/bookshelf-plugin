@@ -6,7 +6,7 @@ module.exports = (bookshelf, { touchMethod = 'touch' } = {}) => {
     initialize(...args) {
       proto.initialize.apply(this, args);
 
-      this.on('saved', async () => {
+      this.on('saved destroyed', async () => {
         const touches = this.touches || [];
 
         if (touches.length > 0) {
