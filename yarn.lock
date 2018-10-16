@@ -493,6 +493,11 @@ bluebird@^3.4.1, bluebird@^3.4.3, bluebird@^3.4.7, bluebird@^3.5.1:
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.2.tgz#1be0908e054a751754549c270489c1505d4ab15a"
   integrity sha512-dhHTWMI7kMx5whMQntl7Vr9C6BvV10lFXDAasnqnrMYhXVCzzk6IO9Fo2L75jXHT07WrOngL1WDXOp+yYS91Yg==
 
+bookshelf-json-columns@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/bookshelf-json-columns/-/bookshelf-json-columns-2.1.1.tgz#0c104e4f6b3c42edf7615fa96b8786e9977e79f8"
+  integrity sha1-DBBOT2s8Qu33YV+pa4eG6Zd+efg=
+
 bookshelf-modelbase@^2.10.4:
   version "2.10.4"
   resolved "https://registry.yarnpkg.com/bookshelf-modelbase/-/bookshelf-modelbase-2.10.4.tgz#32c0674837ed2fc2640a7330848f49b63c6cdb9e"

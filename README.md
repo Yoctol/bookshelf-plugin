@@ -22,6 +22,7 @@ bookshelf.plugin(plugin);
 - case-converter
 - [virtuals](https://github.com/bookshelf/bookshelf/wiki/Plugin:-Virtuals)
 - [modelbase](https://github.com/bsiddiqui/bookshelf-modelbase)
+- [json-columns](https://github.com/seegno/bookshelf-json-columns)
 - touch
 - soft-delete
 - accessible-attributes
