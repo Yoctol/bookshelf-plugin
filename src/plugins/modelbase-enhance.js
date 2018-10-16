@@ -1,13 +1,16 @@
 const modelbase = require('bookshelf-modelbase');
 
-module.exports = bookshelf => {
+module.exports = (
+  bookshelf,
+  { timestamps = ['createdAt', 'updatedAt'] } = {}
+) => {
   bookshelf.plugin(modelbase.pluggable);
 
   const proto = bookshelf.Model.prototype;
 
   // eslint-disable-next-line no-param-reassign
   bookshelf.Model = bookshelf.Model.extend({
-    hasTimestamps: ['createdAt', 'updatedAt'],
+    hasTimestamps: timestamps,
 
     where(firstArg, ...otherArgs) {
       // example: .where({ id: 1 })

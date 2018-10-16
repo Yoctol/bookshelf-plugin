@@ -60,6 +60,14 @@ const plugin = require('@yoctol/bookshelf-plugin');
 bookshelf.plugin(plugin, { touchMethod: 'touchModel' });
 ```
 
+You can use `timestamps` option to overwrite the timestamps key:
+
+```js
+const plugin = require('@yoctol/bookshelf-plugin');
+
+bookshelf.plugin(plugin, { timestamps: ['created_at', 'updated_at'] });
+```
+
 ### soft-delete
 
 ```js
@@ -94,6 +102,21 @@ const User = bookshelf.Model.extend({
 user.name; // Same as user.get('name');
 user.type; // Same as user.get('type');
 user.age; // Same as user.get('age');
+```
+
+You can also overwrite attr on Model.
+
+```js
+bookshelf.Model = bookshelf.Model.extend({
+  constructor(...args) {
+    proto.constructor.apply(this, args);
+
+    Object.defineProperty(this, 'custom', {
+      get: () => 'custom-value',
+      set: (value, key) => this.set(key, value),
+    });
+  },
+});
 ```
 
 ### save-refresh
