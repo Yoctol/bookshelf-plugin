@@ -7,7 +7,7 @@ module.exports = bookshelf => {
 
   // eslint-disable-next-line no-param-reassign
   bookshelf.Model = bookshelf.Model.extend({
-    async save(...args) {
+    save(...args) {
       let attrs;
       let options;
 
@@ -26,14 +26,15 @@ module.exports = bookshelf => {
 
       const { withRefresh, ...otherOptions } = options;
 
-      const model = await proto.save.call(this, attrs, otherOptions);
+      // we must return bluebird Promise for bookshelf
+      return proto.save.call(this, attrs, otherOptions).then(model => {
+        if (withRefresh && model) {
+          // options contains transaction info
+          return model.refresh(otherOptions);
+        }
 
-      if (withRefresh && model) {
-        // options contains transaction info
-        return model.refresh(otherOptions);
-      }
-
-      return model;
+        return model;
+      });
     },
   });
 };
