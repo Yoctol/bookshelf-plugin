@@ -12,36 +12,31 @@ module.exports = (bookshelf, { touchMethod = 'touch' } = {}) => {
         if (touches.length > 0) {
           await this.load(touches);
 
-          try {
-            await Promise.all(
-              touches.map(async touch => {
-                const modelOrCollection = this.related(touch);
+          Promise.all(
+            touches.map(async touch => {
+              const modelOrCollection = this.related(touch);
 
-                if (!modelOrCollection) return;
+              if (!modelOrCollection) return;
 
-                // is relations collection
-                if (Array.isArray(modelOrCollection.models)) {
-                  const collection = modelOrCollection;
+              // is relations collection
+              if (Array.isArray(modelOrCollection.models)) {
+                const collection = modelOrCollection;
 
-                  if (collection.models.length === 0) return;
+                if (collection.models.length === 0) return;
 
-                  return Promise.all(
-                    collection.models.map(model => model[touchMethod]())
-                  );
-                }
+                return Promise.all(
+                  collection.models.map(model => model[touchMethod]())
+                );
+              }
 
-                const model = modelOrCollection;
+              const model = modelOrCollection;
 
-                // is relation model and relation exists
-                if (!model.isNew()) {
-                  return model[touchMethod]();
-                }
-              })
-            );
-          } catch (err) {
-            console.error(err);
-            throw err;
-          }
+              // is relation model and relation exists
+              if (!model.isNew()) {
+                return model[touchMethod]();
+              }
+            })
+          ).catch(console.error);
         }
       });
     },
