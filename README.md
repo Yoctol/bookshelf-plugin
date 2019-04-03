@@ -27,6 +27,7 @@ bookshelf.plugin(plugin);
 - soft-delete
 - accessible-attributes
 - save-refresh
+- encrypt-columns
 
 You can pass `caseConverter: false` option to disable `case-converter`:
 
@@ -128,6 +129,32 @@ bookshelf.Model = bookshelf.Model.extend({
 user.save(null, { withRefresh: true });
 user.save({ key: value }, { withRefresh: true });
 user.save(key, value, { withRefresh: true });
+```
+
+### encrypt-columns
+
+Use `encryptColumns` options to enable `encrypt-columns` plugin.  
+The idea of this plugin mainly comes from [`bookshelf-encrypt-columns`](https://github.com/scoutforpets/bookshelf-encrypt-columns/)
+
+```js
+const plugin = require('@yoctol/bookshelf-plugin');
+
+bookshelf.plugin(plugin, {
+  encryptColumns: {
+    algorithm: 'aes-256-cbc', // default to 'aes-256-cbc'
+    ivLength: 16, // IV length for the selected algorithm
+    key: '<YOUR_KEY>',
+  },
+});
+```
+
+This plugin will automatically encrypt when save to database and decrypt on query from database.
+
+```js
+const User = bookshelf.Model.extend({
+  tableName: 'users',
+  encryptedCoulmns: ['secret'],
+});
 ```
 
 ## License
