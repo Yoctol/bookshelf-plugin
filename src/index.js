@@ -1,14 +1,15 @@
 const jsonColumns = require('bookshelf-json-columns');
 
+const encryptColumnsPlugin = require('./plugins/encrypt-columns');
+const softDelete = require('./plugins/soft-delete');
 const modelbaseEnhance = require('./plugins/modelbase-enhance');
+const touch = require('./plugins/touch');
 const accessibleAttributes = require('./plugins/accessible-attributes');
 const saveRefresh = require('./plugins/save-refresh');
-const softDelete = require('./plugins/soft-delete');
-const touch = require('./plugins/touch');
 
 module.exports = (
   bookshelf,
-  { touchMethod, caseConverter = true, timestamps } = {}
+  { touchMethod, caseConverter = true, timestamps, encryptColumns = null } = {}
 ) => {
   bookshelf.plugin('visibility');
   if (caseConverter) {
@@ -17,6 +18,9 @@ module.exports = (
   bookshelf.plugin('virtuals');
   bookshelf.plugin(jsonColumns);
 
+  if (encryptColumns) {
+    bookshelf.plugin(encryptColumnsPlugin, { ...encryptColumns });
+  }
   bookshelf.plugin(softDelete);
   bookshelf.plugin(modelbaseEnhance, { timestamps });
   bookshelf.plugin(touch, { touchMethod });
