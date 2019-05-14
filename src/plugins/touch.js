@@ -6,7 +6,7 @@ module.exports = (bookshelf, { touchMethod = 'touch' } = {}) => {
     initialize(...args) {
       proto.initialize.apply(this, args);
 
-      this.on('saved', async (_, __, options) => {
+      this.on('saved', async (_, __, { transacting } = {}) => {
         const touches = this.touches || [];
 
         if (touches.length > 0) {
@@ -26,7 +26,9 @@ module.exports = (bookshelf, { touchMethod = 'touch' } = {}) => {
                   if (collection.models.length === 0) return;
 
                   return Promise.all(
-                    collection.models.map(model => model[touchMethod](options))
+                    collection.models.map(model =>
+                      model[touchMethod]({ transacting })
+                    )
                   );
                 }
 
@@ -34,7 +36,7 @@ module.exports = (bookshelf, { touchMethod = 'touch' } = {}) => {
 
                 // is relation model and relation exists
                 if (!model.isNew()) {
-                  return model[touchMethod](options);
+                  return model[touchMethod]({ transacting });
                 }
               })
             );
@@ -46,7 +48,7 @@ module.exports = (bookshelf, { touchMethod = 'touch' } = {}) => {
       });
     },
 
-    [touchMethod](options) {
+    [touchMethod]({ transacting } = {}) {
       const [, updatedAtKey] = this.getTimestampKeys();
 
       const now = new Date();
@@ -54,7 +56,7 @@ module.exports = (bookshelf, { touchMethod = 'touch' } = {}) => {
       return this.save(
         { [updatedAtKey]: now },
         {
-          ...options,
+          transacting,
           patch: true,
         }
       );
