@@ -9,7 +9,13 @@ const saveRefresh = require('./plugins/save-refresh');
 
 module.exports = (
   bookshelf,
-  { touchMethod, caseConverter = true, timestamps, encryptColumns = null } = {}
+  {
+    touchMethod,
+    saveOptions,
+    caseConverter = true,
+    timestamps,
+    encryptColumns = null,
+  } = {}
 ) => {
   bookshelf.plugin('visibility');
   if (caseConverter) {
@@ -23,7 +29,7 @@ module.exports = (
   }
   bookshelf.plugin(softDelete);
   bookshelf.plugin(modelbaseEnhance, { timestamps });
-  bookshelf.plugin(touch, { touchMethod });
+  bookshelf.plugin(touch, { touchMethod, saveOptions });
   bookshelf.plugin(accessibleAttributes);
   bookshelf.plugin(saveRefresh);
 };

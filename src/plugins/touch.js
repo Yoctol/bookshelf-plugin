@@ -1,4 +1,7 @@
-module.exports = (bookshelf, { touchMethod = 'touch' } = {}) => {
+module.exports = (
+  bookshelf,
+  { touchMethod = 'touch', saveOptions = {} } = {}
+) => {
   const proto = bookshelf.Model.prototype;
 
   // eslint-disable-next-line no-param-reassign
@@ -58,6 +61,7 @@ module.exports = (bookshelf, { touchMethod = 'touch' } = {}) => {
         {
           transacting,
           patch: true,
+          ...saveOptions,
         }
       );
     },
