@@ -1,7 +1,7 @@
 const paranoia = require('bookshelf-paranoia');
 const omit = require('lodash/omit');
 
-module.exports = bookshelf => {
+module.exports = (bookshelf, { omitOptions = [] } = {}) => {
   bookshelf.plugin(paranoia);
 
   const proto = bookshelf.Model.prototype;
@@ -33,7 +33,7 @@ module.exports = bookshelf => {
                     .forge({
                       id: model.id,
                     })
-                    .destroy({ ...options, transacting })
+                    .destroy({ ...omit(options, omitOptions), transacting })
                 )
               );
             }
@@ -48,7 +48,7 @@ module.exports = bookshelf => {
                 .forge({
                   id: model.id,
                 })
-                .destroy({ ...options, transacting });
+                .destroy({ ...omit(options, omitOptions), transacting });
             }
           })
         );

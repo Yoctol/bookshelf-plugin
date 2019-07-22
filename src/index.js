@@ -15,6 +15,7 @@ module.exports = (
     caseConverter = true,
     timestamps,
     encryptColumns = null,
+    omitOptions = [],
   } = {}
 ) => {
   bookshelf.plugin('visibility');
@@ -27,7 +28,7 @@ module.exports = (
   if (encryptColumns) {
     bookshelf.plugin(encryptColumnsPlugin, { ...encryptColumns });
   }
-  bookshelf.plugin(softDelete);
+  bookshelf.plugin(softDelete, { omitOptions });
   bookshelf.plugin(modelbaseEnhance, { timestamps });
   bookshelf.plugin(touch, { touchMethod, saveOptions });
   bookshelf.plugin(accessibleAttributes);
