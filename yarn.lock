@@ -646,7 +646,7 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-bluebird@^3.4.1, bluebird@^3.4.3, bluebird@^3.4.7, bluebird@^3.5.1:
+bluebird@^3.4.1, bluebird@^3.4.3, bluebird@^3.5.1:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.3.tgz#7d01c6f9616c9a51ab0f8c549a79dfe6ec33efa7"
   integrity sha512-/qKPUQlaW1OyR51WeCPBvRnAlnZFUJkCSG5HzGnuIqhgyJtF+T94lFnn33eiazjRm2LAHVy2guNnaq48X9SJuw==
@@ -664,15 +664,6 @@ bookshelf-modelbase@^2.10.4:
     joi "^9.0.4"
     lodash.difference "^4.4.0"
     xtend "^4.0.1"
-
-bookshelf-paranoia@^0.13.1:
-  version "0.13.1"
-  resolved "https://registry.yarnpkg.com/bookshelf-paranoia/-/bookshelf-paranoia-0.13.1.tgz#bdf5761d2fbb0026f9aa8328d44830991d9f43c4"
-  integrity sha512-toZrorGYnhdkbzEb8WaXwmHw8LIJ6dgitg1L/IbZ6hikIlCXHrSe6nOF74ZC+Cnldxf+GT5iiyG33Rh1dVU5lw==
-  dependencies:
-    bluebird "^3.4.7"
-    lodash.merge "^4.3.5"
-    lodash.result "^4.3.0"
 
 bookshelf@^0.13.3:
   version "0.13.3"
@@ -3117,16 +3108,6 @@ lodash.difference@^4.4.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.difference/-/lodash.difference-4.5.0.tgz#9ccb4e505d486b91651345772885a2df27fd017c"
   integrity sha1-nMtOUF1Ia5FlE0V3KIWi3yf9AXw=
-
-lodash.merge@^4.3.5:
-  version "4.6.1"
-  resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.1.tgz#adc25d9cb99b9391c59624f379fbba60d7111d54"
-  integrity sha512-AOYza4+Hf5z1/0Hztxpm2/xiPZgi/cjMqdnKTUWTBSKchJlxXXuUSxCCl8rJlf4g6yww/j6mA8nC8Hw/EZWxKQ==
-
-lodash.result@^4.3.0:
-  version "4.5.2"
-  resolved "https://registry.yarnpkg.com/lodash.result/-/lodash.result-4.5.2.tgz#cb45b27fb914eaa8d8ee6f0ce7b2870b87cb70aa"
-  integrity sha1-y0Wyf7kU6qjY7m8M57KHC4fLcKo=
 
 lodash.sortby@^4.7.0:
   version "4.7.0"

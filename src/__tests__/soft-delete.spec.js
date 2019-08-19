@@ -44,17 +44,10 @@ it('should update deleted_at', async () => {
     }
 
     if (step === 2) {
-      // FIXME: should avoid attributes in where if id exists
       expect(query.sql).toEqual(
-        'update `users` set `deleted_at` = ? where `id` = ? and `name` = ? and `type` = ? and `age` = ? and `users`.`deleted_at` is null'
+        'update `users` set `deleted_at` = ? where `id` = ? and `users`.`deleted_at` is null'
       );
-      expect(query.bindings).toEqual([
-        expect.any(Date),
-        '1',
-        'John',
-        'admin',
-        18,
-      ]);
+      expect(query.bindings).toEqual([expect.any(Date), '1']);
 
       query.response([1]);
     }
@@ -96,17 +89,10 @@ it('should cascade delete', async () => {
     }
 
     if (step === 3) {
-      // FIXME: should avoid attributes in where if id exists
       expect(query.sql).toEqual(
-        'update `users` set `deleted_at` = ? where `id` = ? and `name` = ? and `type` = ? and `age` = ? and `users`.`deleted_at` is null'
+        'update `users` set `deleted_at` = ? where `id` = ? and `users`.`deleted_at` is null'
       );
-      expect(query.bindings).toEqual([
-        expect.any(Date),
-        '1',
-        'John',
-        'admin',
-        18,
-      ]);
+      expect(query.bindings).toEqual([expect.any(Date), '1']);
 
       query.response([1]);
     }
