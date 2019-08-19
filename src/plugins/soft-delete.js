@@ -1,5 +1,6 @@
-const paranoia = require('bookshelf-paranoia');
 const omit = require('lodash/omit');
+
+const paranoia = require('./paranoia');
 
 module.exports = (bookshelf, { omitOptions = [] } = {}) => {
   bookshelf.plugin(paranoia);
