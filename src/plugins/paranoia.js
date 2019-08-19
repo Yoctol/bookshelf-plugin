@@ -1,5 +1,7 @@
 /* eslint-disable no-param-reassign */
 // https://github.com/bsiddiqui/bookshelf-paranoia/blob/master/index.js
+// added patch from this PR
+// https://github.com/Yoctol/bookshelf-plugin/pull/18
 const result = require('lodash/result');
 const merge = require('lodash/merge');
 const filter = require('lodash/filter');
