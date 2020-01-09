@@ -163,7 +163,7 @@ module.exports = (bookshelf, settings) => {
             // Resolve all promises in parallel like bookshelf does
             return Promise.all(events);
           })
-          .then(async () => {
+          .then(() => {
             // Check if we need to use a transaction
             if (options.transacting) {
               query = query.transacting(options.transacting);
@@ -179,18 +179,12 @@ module.exports = (bookshelf, settings) => {
               );
             }
 
-            const resp = await query
+            return query
               .update(attrs, this.idAttribute)
               .where(
                 `${result(this, 'tableName')}.${settings.field}`,
                 settings.nullValue
               );
-
-            if (options.transacting) {
-              await options.transacting.commit();
-            }
-
-            return resp;
           })
           .then(resp => {
             // Check if the caller required a row to be deleted and if
