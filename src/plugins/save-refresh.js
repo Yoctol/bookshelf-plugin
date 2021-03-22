@@ -1,4 +1,4 @@
-module.exports = bookshelf => {
+module.exports = (bookshelf) => {
   // model.save() wouldn't return all columns
   // https://github.com/bookshelf/bookshelf/issues/507
   // TODO: this feature may be supported after bookshelf v0.14.x
@@ -27,7 +27,7 @@ module.exports = bookshelf => {
       const { withRefresh, ...otherOptions } = options;
 
       // we must return bluebird Promise for bookshelf
-      return proto.save.call(this, attrs, otherOptions).then(model => {
+      return proto.save.call(this, attrs, otherOptions).then((model) => {
         if (withRefresh && model) {
           // options contains transaction info
           return model.refresh(otherOptions);

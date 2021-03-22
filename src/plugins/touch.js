@@ -9,7 +9,7 @@ module.exports = (
     initialize(...args) {
       proto.initialize.apply(this, args);
 
-      this.on('saved', async (_, __, { transacting } = {}) => {
+      this.on('saved', async (_, { transacting } = {}) => {
         const touches = this.touches || [];
 
         if (touches.length > 0) {
@@ -17,7 +17,7 @@ module.exports = (
 
           try {
             await Promise.all(
-              touches.map(async touch => {
+              touches.map(async (touch) => {
                 const modelOrCollection = this.related(touch);
 
                 if (!modelOrCollection) return;
@@ -29,7 +29,7 @@ module.exports = (
                   if (collection.models.length === 0) return;
 
                   return Promise.all(
-                    collection.models.map(model =>
+                    collection.models.map((model) =>
                       model[touchMethod]({ transacting })
                     )
                   );

@@ -1,8 +1,8 @@
 const _bookshelf = require('bookshelf');
 
-const knex = require('./knex');
-
 const plugin = require('..');
+
+const knex = require('./knex');
 
 const bookshelf = _bookshelf(knex);
 

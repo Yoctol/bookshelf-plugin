@@ -33,7 +33,7 @@ describe('#where', () => {
   it('should format string key', async () => {
     expect.assertions(2);
 
-    tracker.on('query', query => {
+    tracker.on('query', (query) => {
       expect(query.sql).toEqual(
         'select `users`.* from `users` where `first_name` = ?'
       );
@@ -48,7 +48,7 @@ describe('#where', () => {
   it('should format object keys', async () => {
     expect.assertions(2);
 
-    tracker.on('query', query => {
+    tracker.on('query', (query) => {
       expect(query.sql).toEqual(
         'select `users`.* from `users` where `first_name` = ?'
       );
@@ -65,7 +65,7 @@ describe('#findAll', () => {
   it('should format object keys', async () => {
     expect.assertions(2);
 
-    tracker.on('query', query => {
+    tracker.on('query', (query) => {
       expect(query.sql).toEqual(
         'select `users`.* from `users` where `first_name` = ?'
       );

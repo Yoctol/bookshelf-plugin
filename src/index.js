@@ -18,11 +18,10 @@ module.exports = (
     omitOptions = [],
   } = {}
 ) => {
-  bookshelf.plugin('visibility');
   if (caseConverter) {
-    bookshelf.plugin('case-converter');
+    bookshelf.plugin('bookshelf-case-converter-plugin');
   }
-  bookshelf.plugin('virtuals');
+  bookshelf.plugin('bookshelf-virtuals-plugin');
   bookshelf.plugin(jsonColumns);
 
   if (encryptColumns) {
