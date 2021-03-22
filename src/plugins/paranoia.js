@@ -186,7 +186,7 @@ module.exports = (bookshelf, settings) => {
                 settings.nullValue
               );
           })
-          .then(resp => {
+          .then((resp) => {
             // Check if the caller required a row to be deleted and if
             // events weren't totally disabled
             if (resp === 0 && options.require) {

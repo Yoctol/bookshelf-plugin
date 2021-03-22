@@ -55,7 +55,7 @@ module.exports = (bookshelf, options) => {
       // Encrypt specified columns on create.
       this.on('saving', (model, attrs, _options = {}) => {
         if (this.encryptedColumns) {
-          this.encryptedColumns.forEach(column => {
+          this.encryptedColumns.forEach((column) => {
             if (this.attributes[column]) {
               const encrypted = encrypt({
                 ...cipherOptions,
@@ -75,7 +75,7 @@ module.exports = (bookshelf, options) => {
       // Decrypt encrypted columns when fetching an individual record.
       this.on('fetched', () => {
         if (this.encryptedColumns) {
-          this.encryptedColumns.forEach(column => {
+          this.encryptedColumns.forEach((column) => {
             if (this.attributes[column]) {
               this.attributes[column] = decrypt({
                 ...cipherOptions,
@@ -87,11 +87,11 @@ module.exports = (bookshelf, options) => {
       });
 
       // Decrypt encrypted columns when fetching a collection of records.
-      this.on('fetched:collection', collection => {
+      this.on('fetched:collection', (collection) => {
         if (this.encryptedColumns) {
-          this.encryptedColumns.forEach(column => {
+          this.encryptedColumns.forEach((column) => {
             if (!isEmpty(collection)) {
-              collection.models.forEach(model => {
+              collection.models.forEach((model) => {
                 if (model.has(column)) {
                   // eslint-disable-next-line no-param-reassign
                   model.attributes[column] = decrypt({

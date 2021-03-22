@@ -15,7 +15,7 @@ module.exports = (bookshelf, { omitOptions = [] } = {}) => {
 
       try {
         await Promise.all(
-          dependents.map(async dependent => {
+          dependents.map(async (dependent) => {
             const modelOrCollection = this.related(dependent);
 
             if (!modelOrCollection) return;
@@ -27,7 +27,7 @@ module.exports = (bookshelf, { omitOptions = [] } = {}) => {
               if (collection.models.length === 0) return;
 
               return Promise.all(
-                collection.models.map(model =>
+                collection.models.map((model) =>
                   collection.model
                     // delete without created_at, updated_at
                     // TODO: use model.destroy when https://github.com/bsiddiqui/bookshelf-paranoia/pull/38 ready
@@ -73,7 +73,7 @@ module.exports = (bookshelf, { omitOptions = [] } = {}) => {
         );
       }
 
-      return bookshelf.knex.transaction(transacting =>
+      return bookshelf.knex.transaction((transacting) =>
         cascadeDelete.call(this, transacting, omit(options, ['cascade']))
       );
     },
