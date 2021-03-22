@@ -5,7 +5,6 @@ const softDelete = require('./plugins/soft-delete');
 const modelbaseEnhance = require('./plugins/modelbase-enhance');
 const touch = require('./plugins/touch');
 const accessibleAttributes = require('./plugins/accessible-attributes');
-const saveRefresh = require('./plugins/save-refresh');
 
 module.exports = (
   bookshelf,
@@ -31,5 +30,4 @@ module.exports = (
   bookshelf.plugin(modelbaseEnhance, { timestamps });
   bookshelf.plugin(touch, { touchMethod, saveOptions });
   bookshelf.plugin(accessibleAttributes);
-  bookshelf.plugin(saveRefresh);
 };
