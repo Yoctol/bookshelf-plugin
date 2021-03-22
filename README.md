@@ -18,15 +18,13 @@ bookshelf.plugin(plugin);
 
 ## Include plugins
 
-- [visibility](https://github.com/bookshelf/bookshelf/wiki/Plugin:-Visibility)
-- case-converter
-- [virtuals](https://github.com/bookshelf/bookshelf/wiki/Plugin:-Virtuals)
+- [case-converter](https://github.com/bookshelf/case-converter-plugin)
+- [virtuals](https://github.com/bookshelf/virtuals-plugin)
 - [modelbase](https://github.com/bsiddiqui/bookshelf-modelbase)
 - [json-columns](https://github.com/seegno/bookshelf-json-columns)
 - touch
 - soft-delete
 - accessible-attributes
-- save-refresh
 - encrypt-columns
 
 You can pass `caseConverter: false` option to disable `case-converter`:
@@ -119,16 +117,6 @@ bookshelf.Model = bookshelf.Model.extend({
     });
   },
 });
-```
-
-### save-refresh
-
-> This feature may be supported after bookshelf v0.14.x: https://github.com/bookshelf/bookshelf/issues/1665
-
-```js
-user.save(null, { withRefresh: true });
-user.save({ key: value }, { withRefresh: true });
-user.save(key, value, { withRefresh: true });
 ```
 
 ### encrypt-columns
