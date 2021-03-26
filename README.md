@@ -145,6 +145,45 @@ const User = bookshelf.Model.extend({
 });
 ```
 
+## Migration guide from 0.6.x to 1.0.0
+
+### withRefresh
+
+#### before
+
+```js
+user.save(null, { withRefresh: true });
+user.save({ key: value }, { withRefresh: true });
+user.save(key, value, { withRefresh: true });
+```
+
+#### after
+
+```js
+user.save(null);
+user.save({ key: value });
+user.save(key, value);
+```
+
+#### before
+
+```js
+user.save(null);
+user.save({ key: value });
+user.save(key, value);
+```
+
+#### after
+
+```js
+user.save(null, { autoRefresh: false });
+user.save({ key: value }, { autoRefresh: false });
+user.save(key, value, { autoRefresh: false });
+```
+
+- `autoRefresh` is supported by bookshelf, and its default is `true`
+- You should also take a look for bookshelf migration guide https://github.com/bookshelf/bookshelf/wiki/Migrating-from-0.15.1-to-1.0.0
+
 ## License
 
 MIT © [Yoctol](https://github.com/Yoctol/bookshelf-plugin)
