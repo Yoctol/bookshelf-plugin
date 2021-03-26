@@ -24,6 +24,10 @@
     "bookshelf-virtuals-plugin": "^1.0.0",
     "lodash": "^4.17.21"
   },
+  "peerDependencies": {
+    "bookshelf": ">=1.2.0",
+    "knex": ">=0.21"
+  },
   "devDependencies": {
     "bookshelf": "^1.2.0",
     "eslint": "^7.22.0",
