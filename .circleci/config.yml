@@ -1,29 +1,29 @@
 version: 2
 # Reference variables.
 references:
-  docker_default: &docker_12
+  docker_default: &docker_14
     working_directory: /tmp/app
     docker:
-      - image: cimg/node:12.20
+      - image: cimg/node:14.17
     environment:
       TZ: '/usr/share/zoneinfo/Asia/Taipei'
 
 jobs:
   install:
-    <<: *docker_12
+    <<: *docker_14
     steps:
       - checkout
       - restore_cache:
           keys:
-            - node-12-cache-{{checksum "yarn.lock"}}
-            - node-12-cache
+            - node-14-cache-{{checksum "yarn.lock"}}
+            - node-14-cache
       - run:
           name: install dependencies
           command: |
             yarn config set cache-folder .yarn-cache
             yarn --frozen-lockfile
       - save_cache:
-          key: node-12-cache-{{checksum "yarn.lock"}}
+          key: node-14-cache-{{checksum "yarn.lock"}}
           paths:
             - .yarn-cache
             - ./node_modules
@@ -33,7 +33,7 @@ jobs:
             - lib
             - node_modules
   lint:
-    <<: *docker_12
+    <<: *docker_14
     steps:
       - checkout
       - attach_workspace:
@@ -42,7 +42,7 @@ jobs:
           name: run lint
           command: npm run lint
   test:
-    <<: *docker_12
+    <<: *docker_14
     steps:
       - checkout
       - attach_workspace:
